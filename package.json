@@ -4,5 +4,9 @@
     "big-fish-backend",
     "big-fish-frontend",
     "big-fish-lib"
+  ],
+  "nohoist": [
+    "**/typeorm/**",
+    "**/typeorm"
   ]
 }

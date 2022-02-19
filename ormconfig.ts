@@ -1,3 +1,4 @@
+// it needs to be in root because npm workspaces dont support "nohoist" yet
 export = {
   synchronize: true,
   logging: false,
