@@ -1,0 +1,1 @@
+docker run -d -p 5454:5432 -e POSTGRES_PASSWORD=fish -e POSTGRES_USER=fish postgres:14

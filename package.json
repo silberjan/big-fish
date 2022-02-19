@@ -1,0 +1,8 @@
+{
+  "name": "big-fish-mono",
+  "workspaces": [
+    "big-fish-backend",
+    "big-fish-frontend",
+    "big-fish-lib"
+  ]
+}

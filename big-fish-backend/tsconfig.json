@@ -1,0 +1,11 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "esModuleInterop": false,
+    "strict": false
+  },
+  "exclude": ["node_modules"]
+}
