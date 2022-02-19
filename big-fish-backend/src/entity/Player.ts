@@ -1,7 +1,9 @@
 import { Player } from 'big-fish-lib'
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm'
 
-@Entity()
+export const PLAYER_TABLE_NAME = 'player'
+
+@Entity(PLAYER_TABLE_NAME)
 export class PlayerEntity implements Player {
   @PrimaryGeneratedColumn('increment')
   id: string
@@ -9,9 +11,9 @@ export class PlayerEntity implements Player {
   @CreateDateColumn()
   created: Date
 
-  @Column()
+  @Column({ unique: true })
   username: string
 
-  @Column()
-  email: string
+  @Column({ nullable: true })
+  email?: string
 }

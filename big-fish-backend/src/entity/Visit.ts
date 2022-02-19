@@ -3,7 +3,9 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn } f
 import { LegEntity } from './Leg'
 import { PlayerEntity } from './Player'
 
-@Entity()
+export const VISIT_TABLE_NAME = 'visit'
+
+@Entity(VISIT_TABLE_NAME)
 export class VisitEntity implements Visit {
   @PrimaryGeneratedColumn()
   id: number
@@ -17,9 +19,9 @@ export class VisitEntity implements Visit {
   @ManyToOne(() => LegEntity)
   leg: LegEntity
 
-  @Column({ nullable: false })
+  @Column()
   value: number
 
-  @Column({ nullable: false, default: 3 })
+  @Column({ default: 3 })
   attempts: number
 }

@@ -3,6 +3,7 @@ import * as express from 'express'
 import { json, urlencoded } from 'express'
 import * as morgan from 'morgan'
 import { gamesRouter } from './api/games/games-router'
+import { playersRouter } from './api/players/players-router'
 import { corsHeaders } from './middleware/cors'
 
 export const app = express()
@@ -23,3 +24,4 @@ app.use(json({ limit: '1mb' }))
 
 // setup api routes
 app.use('/games', gamesRouter)
+app.use('/players', playersRouter)

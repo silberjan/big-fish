@@ -1,8 +1,11 @@
 import { Game, GameGoal } from 'big-fish-lib'
-import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { PlayerEntity } from './Player'
+import { SetEntitiy } from './Set'
 
-@Entity()
+export const GAME_TABLE_NAME = 'game'
+
+@Entity(GAME_TABLE_NAME)
 export class GameEntity implements Game {
   @PrimaryGeneratedColumn()
   id: number
@@ -16,15 +19,18 @@ export class GameEntity implements Game {
   @ManyToOne(() => PlayerEntity)
   winner?: string
 
-  @Column({ nullable: false })
+  @Column()
   legs: number
 
-  @Column({ nullable: false, default: 1 })
+  @Column({ default: 1 })
   sets: number
 
   @Column({ type: 'enum', enum: GameGoal, default: GameGoal.FIVE_OH_ONE })
   goal: GameGoal
 
-  @Column({ nullable: false, default: false })
+  @Column({ default: false })
   finished: boolean
+
+  @OneToMany(() => SetEntitiy, (set) => set.game)
+  results: SetEntitiy[]
 }
