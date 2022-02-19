@@ -14,7 +14,7 @@ export class GameEntity implements Game {
   created: Date
 
   @ManyToMany(() => PlayerEntity)
-  playerIds: string[]
+  players: string[]
 
   @ManyToOne(() => PlayerEntity)
   winner?: string

@@ -1,11 +1,12 @@
 import { Router } from 'express'
+import { createGame } from './create-game'
 
 export const gamesRouter = Router()
 
 /**
  * Create new game
  */
-gamesRouter.post('/')
+gamesRouter.post('/', createGame)
 
 /**
  * Get game details

@@ -33,7 +33,7 @@ export enum GameGoal {
 export interface Game {
   id: number
   created: Date
-  playerIds: string[]
+  players: string[]
   winner?: string
   legs: number
   sets: number
