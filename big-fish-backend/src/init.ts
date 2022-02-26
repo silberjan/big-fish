@@ -8,7 +8,6 @@ export async function initDb() {
   const checkouts: Checkout[] = JSON.parse(json)
   return getConnection().transaction(async (em) => {
     console.log(`Inserting ${checkouts.length} checkouts to the db...`)
-    console.log(checkouts.filter((c) => !c.value))
     await em.save(CheckoutEntitiy, checkouts, { chunk: 10000 })
     const count = await em.count(CheckoutEntitiy)
     console.log(`${count} checkouts are now in the db`)

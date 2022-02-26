@@ -1,8 +1,8 @@
+import { VisitPayload } from 'big-fish-lib'
 import { validate } from 'class-validator'
 import { Response } from 'express'
 import { CheckoutEntitiy } from 'src/entity/Checkout'
 import { VisitEntity } from 'src/entity/Visit'
-import { VisitPayload } from 'src/types/visit-payload'
 import { getConnection } from 'typeorm'
 import { GameRequest } from 'types/game-request'
 
