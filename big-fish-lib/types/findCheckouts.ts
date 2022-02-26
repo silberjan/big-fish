@@ -108,7 +108,7 @@ const values = new Array(170).fill('banana')
 
 const checkoutMap = values.reduce((acc, v, i) => {
   const toCheck = i + 1
-  const checkouts: Checkout[] = []
+  const checkouts: Checkout['sequence'][] = []
 
   // console.log(`Finding ways to check ${toCheck}...`)
 
@@ -122,14 +122,15 @@ const checkoutMap = values.reduce((acc, v, i) => {
       break
     }
     const remainingCheckoutCombos = findRemainingCheckouts(rest)
-    checkouts.push(...(remainingCheckoutCombos.map((c) => [...c, doubleFields[v]]) as Checkout[]))
+    checkouts.push(...(remainingCheckoutCombos.map((c) => [...c, doubleFields[v]]) as Checkout['sequence'][]))
   }
   acc[toCheck] = checkouts.map((c, i) => ({
     id: `${toCheck.toString().padStart(3, '0')}-${(i + 1).toString().padStart(4, '0')}`,
     sequence: c,
+    value: toCheck,
   }))
   // console.log(`There are ${checkouts.length} ways to check ${toCheck}`)
   return acc
 }, {})
 
-console.log(JSON.stringify(checkoutMap, null, 2))
+console.log(JSON.stringify(Object.values(checkoutMap).flat(), null, 2))

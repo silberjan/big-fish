@@ -6,21 +6,8 @@ export interface Visit {
   value: number // max 180
   attempts: number // in a checkout it could be less than 3
   player: Player
-  leg: Leg
-}
-
-export interface Leg {
-  id: number
-  created: Date
-  index: number
-  set: Set
-}
-
-export interface Set {
-  id: number
-  created: Date
-  index: number
-  game: Game
+  leg: number
+  set: number
 }
 
 export enum GameGoal {
@@ -39,4 +26,6 @@ export interface Game {
   sets: number
   goal: GameGoal
   finished: boolean
+  results: Visit[]
+  checkout?: string
 }
