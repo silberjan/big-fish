@@ -1,19 +1,28 @@
 import { Game, GameGoal } from 'big-fish-lib'
-import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from 'typeorm'
 import { PlayerEntity } from './Player'
 import { VisitEntity } from './Visit'
 
 export const GAME_TABLE_NAME = 'game'
 
 @Entity(GAME_TABLE_NAME)
-export class GameEntity implements Game {
+export class GameEntity extends Game {
   @PrimaryGeneratedColumn()
   id: number
 
   @CreateDateColumn()
   created: Date
 
-  @ManyToMany(() => PlayerEntity)
+  @Column('varchar', { array: true })
   players: string[]
 
   @ManyToOne(() => PlayerEntity)
@@ -27,9 +36,6 @@ export class GameEntity implements Game {
 
   @Column({ type: 'enum', enum: GameGoal, default: GameGoal.FIVE_OH_ONE })
   goal: GameGoal
-
-  @Column({ default: false })
-  finished: boolean
 
   @OneToMany(() => VisitEntity, (visit) => visit.game)
   results: VisitEntity[]

@@ -6,7 +6,7 @@ export const PLAYER_TABLE_NAME = 'player'
 @Entity(PLAYER_TABLE_NAME)
 export class PlayerEntity implements Player {
   @PrimaryGeneratedColumn('increment')
-  id: string
+  id: number
 
   @CreateDateColumn()
   created: Date

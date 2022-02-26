@@ -1,5 +1,7 @@
 import { Router } from 'express'
 import { createPlayer } from './create-player'
+import { getPlayer } from './get-player'
+import { listPlayers } from './list-players'
 
 export const playersRouter = Router()
 
@@ -11,12 +13,12 @@ playersRouter.post('/', createPlayer)
 /**
  * Get all players
  */
-playersRouter.get('/')
+playersRouter.get('/', listPlayers)
 
 /**
  * Get a player
  */
-playersRouter.get('/:playerId')
+playersRouter.get('/:playerId', getPlayer)
 
 /**
  * Update a player

@@ -14,8 +14,8 @@ export class VisitEntity implements Visit {
   @CreateDateColumn()
   created: Date
 
-  @ManyToOne(() => PlayerEntity)
-  player: PlayerEntity
+  @Column()
+  player: string
 
   @ManyToOne(() => GameEntity)
   game: GameEntity
@@ -29,9 +29,6 @@ export class VisitEntity implements Visit {
   @Column()
   value: number
 
-  @Column({ default: 3 })
-  attempts: number
-
   @ManyToOne(() => CheckoutEntitiy, { nullable: true })
-  checkout?: string
+  checkout?: CheckoutEntitiy
 }
