@@ -1,7 +1,7 @@
 import { Game, GameGoal } from 'big-fish-lib'
 import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
 import { PlayerEntity } from './Player'
-import { SetEntitiy } from './Set'
+import { VisitEntity } from './Visit'
 
 export const GAME_TABLE_NAME = 'game'
 
@@ -31,6 +31,6 @@ export class GameEntity implements Game {
   @Column({ default: false })
   finished: boolean
 
-  @OneToMany(() => SetEntitiy, (set) => set.game)
-  results: SetEntitiy[]
+  @OneToMany(() => VisitEntity, (visit) => visit.game)
+  results: VisitEntity[]
 }
