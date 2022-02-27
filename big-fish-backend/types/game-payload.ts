@@ -3,13 +3,13 @@ import { MinLength } from 'class-validator'
 
 export class GamePayload implements Partial<Game> {
   @MinLength(2)
-  players: string[]
+  players!: string[]
 
-  legs: number
+  legs!: number
 
-  sets: number
+  sets!: number
 
-  goal: GameGoal
+  goal!: GameGoal
 
   constructor(literal: GamePayload) {
     Object.assign(this, literal)

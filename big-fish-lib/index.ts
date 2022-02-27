@@ -1,5 +1,3 @@
 export * from './types/checkouts'
 export * from './types/game'
-export * from './types/game-payload'
 export * from './types/player'
-export * from './types/visit-payload'

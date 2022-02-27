@@ -1,0 +1,67 @@
+@use 'mixins' as doko;
+
+button {
+  border: none;
+  background: none;
+  color: var(--on-background);
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  &.doko-button {
+    font-weight: 500;
+    background: var(--primary);
+    color: var(--on-primary);
+    border-radius: var(--border-radius);
+    padding: 0 1rem;
+    height: var(--button-height);
+    @include doko.flex-row();
+    @include doko.flex-align(center, center);
+    @include doko.row-gap(0.5rem);
+    mat-icon {
+      @include doko.mat-icon-size(20px);
+    }
+    &.secondary {
+      @include doko.secondary-style();
+    }
+    &.primary {
+      @include doko.primary-style();
+    }
+    &.text {
+      background: none;
+      color: var(--primary);
+    }
+    &:focus {
+      outline: none;
+    }
+    &:disabled {
+      @include doko.disabled-style();
+    }
+  }
+}
+
+a {
+  color: #fff;
+}
+
+html,
+input,
+textarea,
+button,
+select,
+a {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+*:focus {
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}

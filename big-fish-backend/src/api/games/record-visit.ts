@@ -1,10 +1,10 @@
-import { VisitPayload } from 'big-fish-lib'
 import { validate } from 'class-validator'
 import { Response } from 'express'
 import { CheckoutEntitiy } from 'src/entity/Checkout'
 import { VisitEntity } from 'src/entity/Visit'
 import { getConnection } from 'typeorm'
 import { GameRequest } from 'types/game-request'
+import { VisitPayload } from 'types/visit-payload'
 
 export async function recordVisit(req: GameRequest, res: Response) {
   const payload = new VisitPayload(req.body)

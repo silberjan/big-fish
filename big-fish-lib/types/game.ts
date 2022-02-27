@@ -18,14 +18,14 @@ export enum GameGoal {
 }
 
 export class Game {
-  id: number
-  created: Date
-  players: string[]
+  id!: number
+  created!: Date
+  players!: string[]
   winner?: string
-  legs: number
-  sets: number
-  goal: GameGoal
-  results: Visit[]
+  legs!: number
+  sets!: number
+  goal!: GameGoal
+  results!: Visit[]
   checkout?: string
 
   get finished() {
@@ -34,7 +34,8 @@ export class Game {
 
   get currentSet() {
     const overall = this.overallStandings
-    return +Object.keys(overall).find(([key]) => !overall[key].finished)
+    const currentSet = Object.keys(overall).find(([key]) => !overall[+key].finished) || 0
+    return +currentSet
   }
 
   get currentLeg() {
@@ -59,20 +60,22 @@ export class Game {
   get overallStandings(): {
     [set: number]: { finishedLegs: number; wonLegs: { [playerId: number]: number }; finished: boolean }
   } {
-    const standings = {}
+    const standings = {} as {
+      [set: number]: { finishedLegs: number; wonLegs: { [playerId: number]: number }; finished: boolean }
+    }
     for (let s = 0; s < this.sets; s++) {
       let finishedLegs = 0
       const wonLegs = this.players.reduce((acc, p) => {
-        acc[p] = 0
+        acc[+p] = 0
         return acc
-      }, {})
+      }, {} as { [playerId: string]: number })
       let setFinished = false
       for (let l = 0; l < this.legs; l++) {
         const legStandings = this.getStandings(s, l)
         if (legStandings.finished) {
           finishedLegs++
-          wonLegs[this.winner]++
-          if (wonLegs[this.winner] > this.legs / 2) {
+          wonLegs[legStandings.winner]++
+          if (wonLegs[legStandings.winner] > this.legs / 2) {
             setFinished = true
           }
         }
@@ -100,9 +103,9 @@ export class Game {
         this.players.reduce((acc, p) => {
           acc[p] = this.goal
           return acc
-        }, {})
+        }, {} as { [playerId: string]: number })
       )
-    const winner = Object.keys(requiredPoints).find((playerId) => requiredPoints[playerId] === 0)
+    const winner = Object.keys(requiredPoints).find((playerId) => requiredPoints[playerId] === 0) || 'n/a'
     return {
       requiredPoints,
       finished: !!winner,

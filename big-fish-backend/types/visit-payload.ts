@@ -1,19 +1,19 @@
 import { Visit } from 'big-fish-lib'
-import { IsInt, IsNumber, Max, Min } from 'class-validator'
+import { IsInt, Max, Min } from 'class-validator'
 
 export class VisitPayload implements Partial<Omit<Visit, 'player' | 'checkout'>> {
   @IsInt()
   @Min(0)
   @Max(180)
-  value: number
+  value!: number
 
   @IsInt()
-  set: number
+  set!: number
 
   @IsInt()
-  leg: number
+  leg!: number
 
-  player: string
+  player!: string
 
   checkout?: string
 
